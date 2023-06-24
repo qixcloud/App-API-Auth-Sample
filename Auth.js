@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-const token = "ukBwTty0cGvQ";
+const token = "[insert token]";
 export default class SplashScreen extends Component {
   constructor(props) {
     super(props);

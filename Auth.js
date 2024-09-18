@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-const token = "[insert token]";
+const appId = "[insert appId]";
 export default class SplashScreen extends Component {
   constructor(props) {
     super(props);
@@ -9,16 +9,18 @@ export default class SplashScreen extends Component {
     };
   }
   componentDidMount = async () => {
-    const params = new FormData();
-    params.append("act", "get");
-    params.append("token", token);
-    axios({
-      method: "post",
-      url: "https://qix.cloud/ajax/app_settings.php",
-      data: params,
-    }).then((res) => {
-      this.setState({ appSettings: res.data });
-    });
+    const response = await axios.post(
+      "https://qix.cloud/ajax/app.php",
+      {
+        appId: appId,
+      },
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    this.setState({ appSettings: response.data });
   };
   render() {
     return <></>;
